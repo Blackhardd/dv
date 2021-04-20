@@ -5,6 +5,9 @@ if( !defined( 'DV_THEME_VERSION' ) ){
 }
 
 
+/**
+ * Theme Supports
+ */
 add_action( 'after_setup_theme', 'dv_theme_supports' );
 if( !function_exists( 'dv_theme_supports' ) ) :
     function dv_theme_supports(){
@@ -36,3 +39,24 @@ if( !function_exists( 'dv_theme_supports' ) ) :
         );    
     }
 endif;
+
+
+/**
+ * Enqueue scripts and styles
+ */
+add_action( 'wp_enqueue_scripts', 'dv_enqueue_scripts' );
+function dv_enqueue_scripts(){
+    wp_enqueue_style( 'dv-theme', get_stylesheet_uri(), array(), DV_THEME_VERSION );
+}
+
+
+/**
+ * Shortcodes
+ */
+include TEMPLATEPATH . '/inc/shortcodes.php';
+
+
+/**
+ * Elementor Widgets
+ */
+include TEMPLATEPATH . '/inc/elementor.php';

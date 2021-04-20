@@ -1,10 +1,154 @@
 /*
-    Theme Name: DV
-    Author: topranker.cz
-    Author URI: https://topranker.cz/
-    Description: DV basic theme.
-    Version: 0.1
-    License: GNU General Public License v2 or later
-    License URI: http://www.gnu.org/licenses/gpl-2.0.html
-    Text Domain: dv
+Theme Name: DV
+Author: topranker.cz
+Author URI: https://topranker.cz/
+Description: DV basic theme.
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: dv
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #474545;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+h1 {
+    font-size: 3.125em;
+    line-height: 1.4;
+}
+h2 {
+    font-size: 2.618em;
+    line-height: 1.4;
+}
+h3 {
+    font-size: 1.931em;
+    line-height: 1.4;
+}
+h4 {
+    font-size: 1.618;
+    line-height: 1.4;
+}
+h5 {
+    font-size: 1.194em;
+    line-height: 1.4;
+}
+h6 {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+
+/**
+ *  Site Header
+ */
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 23px 15px 22px;
+}
+
+
+/**
+ *  Site Logo
+ */
+.site-logo a,
+.site-logo img {
+    display: block;
+}
+
+
+/**
+ *  Site Navigation
+ */
+.site-nav {
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.site-nav ul.menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav ul.menu a {
+    color: #474545;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 250ms ease;
+}
+
+.site-nav ul.menu a:hover {
+    color: #F8961E;
+}
+
+.site-nav ul.menu > li:not(:last-child) {
+    margin-right: 40px;
+}
+
+
+/**
+ *  Hero
+ */
+.hero > img {
+    display: block;
+    border-radius: 16px !important;
+}
+
+.hero__content {
+    position: relative;
+    max-width: 980px;
+    margin: -200px auto 0;
+    padding: 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    backdrop-filter: blur(40px);
+    z-index: 2;
+}
+
+.hero__content h1 {
+    margin: 0 0 20px;
+    font-size: 36px;
+}
+
+.hero__subtitle {
+    margin: 0;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+
+/**
+ *  Social Icons
+ */
+.social-icons {
+    display: flex;
+}
+
+.social-icons a {
+    display: inline-block;
+}
+
+.social-icons a:not(:last-child) {
+    margin-right: 10px;
+}
+
+.social-icons svg {
+    display: block;
+    fill: #F26F17;
+}
