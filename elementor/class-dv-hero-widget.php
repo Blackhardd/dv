@@ -49,9 +49,27 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'subtitle',
 			[
-				'label' 		=> __( 'Subtitle', 'plugin-name' ),
+				'label' 		=> __( 'Subtitle', 'dv' ),
 				'type' 			=> \Elementor\Controls_Manager::TEXT,
 				'placeholder' 	=> __( 'Enter subtitle', 'dv' ),
+			]
+		);
+
+		$this->add_control(
+			'btn_title',
+			[
+				'label' 		=> __( 'Button title', 'dv' ),
+				'type' 			=> \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Enter button title', 'dv' ),
+			]
+		);
+
+		$this->add_control(
+			'btn_link',
+			[
+				'label' 		=> __( 'Button link', 'dv' ),
+				'type' 			=> \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Enter button link', 'dv' ),
 			]
 		);
 
@@ -70,6 +88,13 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 				<div class='hero__content'>
 					<h1>{$settings['title']}</h1>
 					<h2 class='hero__subtitle'>{$settings['subtitle']}</h2>
+		";
+
+		if( $settings['btn_title'] && $settings['btn_link'] ){
+			echo "<a href='{$settings['btn_link']}' class='button hero__action'>{$settings['btn_title']}</a>";
+		}
+
+		echo "		
 				</div>
 			</div>
 		";

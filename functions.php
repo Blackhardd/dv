@@ -47,6 +47,8 @@ endif;
 add_action( 'wp_enqueue_scripts', 'dv_enqueue_scripts' );
 function dv_enqueue_scripts(){
     wp_enqueue_style( 'dv-theme', get_stylesheet_uri(), array(), DV_THEME_VERSION );
+
+    wp_enqueue_script( 'dv-frontend', get_template_directory_uri() . '/assets/js/frontend.js', array(), DV_THEME_VERSION, true );
 }
 
 
