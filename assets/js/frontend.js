@@ -1,8 +1,11 @@
 jQuery(document).ready(function($){
     // Header
     let $header = $('.site-header');
+
     let $scroll_to_top = $('.scroll-to-top');
     let $scroll_to_top_btn = $('.scroll-to-top button');
+
+    let $mobile_nav_toggler = $('.site-nav__toggler');
 
     if($(window).scrollTop() > $header.height()){
         if(!$header.hasClass('transparent')){
@@ -43,4 +46,8 @@ jQuery(document).ready(function($){
     $scroll_to_top_btn.on('click', function(){
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
+
+    $mobile_nav_toggler.on('click', function(){
+        $(this).toggleClass('active');
+    })
 });

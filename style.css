@@ -303,7 +303,7 @@ textarea {
     align-items: center;
     max-width: 1150px;
     margin: 0 auto;
-    padding: 23px 15px 22px;
+    padding: 23px 1rem 22px;
 }
 
 
@@ -317,6 +317,7 @@ textarea {
 
 .site-header.fixed .site-logo img {
     max-height: 40px;
+    width: auto;
 }
 
 
@@ -324,6 +325,7 @@ textarea {
  *  Site Navigation
  */
 .site-nav {
+    position: relative;
     margin-left: 64px;
 }
 
@@ -782,11 +784,26 @@ textarea {
     }
     .site-nav__toggler + div {
         position: absolute;
-        display: none;
-        top: 85px;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        visibility: hidden;
+        top: 54px;
+        right: -16px;
+        width: 100vw;
+        padding: 2rem 1rem;
+        background: #fafafa;
+        transform: translateY(-32px);
+        opacity: 0;
+        transition: all 300ms ease;
+    }
+    .site-nav__toggler.active + div {
+        visibility: visible;
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .site-nav ul.menu {
+        flex-direction: column;
+    }
+    .site-nav ul.menu > li:not(:last-child) {
+        margin-right: 0;
     }
 
     .site-header .social-icons {
