@@ -35,6 +35,15 @@ class DV_Button_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+        $this->add_control(
+            'icon_class',
+            [
+                'label'         => __( 'IcoFont icon classname', 'dv' ),
+                'type'          => \Elementor\Controls_Manager::TEXT,
+                'placeholder' 	=> __( 'Enter icon classname', 'dv' )
+            ]
+        );
+
 		$this->add_control(
 			'link',
 			[
@@ -64,10 +73,16 @@ class DV_Button_Widget extends \Elementor\Widget_Base {
 	protected function render(){
         $settings = $this->get_settings_for_display();
 
+        $icon = '';
+
+        if( $settings['icon_class'] ){
+            $icon = "<i class='{$settings['icon_class']}'></i>";
+        }
+
         if( $settings['title'] && $settings['link'] ){
             echo "
                 <div class='button-wrap' style='text-align: {$settings['alignment']};'>
-                    <a href='{$settings['link']}' class='button'>{$settings['title']}</a>
+                    <a href='{$settings['link']}' class='button'>{$settings['title']}{$icon}</a>
                 </div>
             ";
         }

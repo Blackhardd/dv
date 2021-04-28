@@ -44,6 +44,14 @@ class DV_Steps extends \Elementor\Widget_Base {
 			]
 		);
 
+        $this->add_control(
+            'bg_color',
+            [
+                'label'     => __( 'Background color', 'dv' ),
+                'type'      => \Elementor\Controls_Manager::COLOR
+            ]
+        );
+
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
@@ -78,8 +86,14 @@ class DV_Steps extends \Elementor\Widget_Base {
 
 	protected function render(){
         $settings = $this->get_settings_for_display();
+        $style = '';
 
-        echo "<div class='steps'>";
+        if( $settings['bg_color'] ){
+            $style .= "background-color: {$settings['bg_color']};";
+            $style .= "border-radius: 0 32px;";
+        }
+
+        echo "<div class='steps' style='{$style}'>";
 
         if( $settings['steps_heading'] ){
             echo "

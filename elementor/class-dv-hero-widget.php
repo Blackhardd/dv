@@ -55,6 +55,14 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+        $this->add_control(
+            'font_color',
+            [
+                'label'     => __( 'Font color', 'dv' ),
+                'type'      => \Elementor\Controls_Manager::COLOR
+            ]
+        );
+
 		$this->add_control(
 			'btn_title',
 			[
@@ -73,6 +81,15 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+        $this->add_control(
+            'shortcode',
+            [
+                'label' 		=> __( 'Shortcode', 'dv' ),
+                'type' 			=> \Elementor\Controls_Manager::TEXT,
+                'placeholder' 	=> __( 'Enter shortcode', 'dv' ),
+            ]
+        );
+
 
 		$this->end_controls_section();
     }
@@ -80,24 +97,34 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 	protected function render(){
         $settings = $this->get_settings_for_display();
 
-        $image = wp_get_attachment_image( $settings['image']['id'], 'full' );
+        $image = wp_get_attachment_image_url( $settings['image']['id'], 'full' );
+
+        if( $settings['font_color'] ){
+            $content_style = "color: {$settings['font_color']};";
+        }
 
         echo "
-			<div class='hero'>
-				{$image}
-				<div class='hero__content'>
-					<h1>{$settings['title']}</h1>
-					<h2 class='hero__subtitle'>{$settings['subtitle']}</h2>
+			<div class='hero' style='background-image: url({$image})'>
+                <div class='hero__inner'>
+                    <div class='hero__content' style='{$content_style}'>
+                        <h1>{$settings['title']}</h1>
+                        <h2 class='hero__subtitle'>{$settings['subtitle']}</h2>
 		";
 
 		if( $settings['btn_title'] && $settings['btn_link'] ){
 			echo "<a href='{$settings['btn_link']}' class='button hero__action'>{$settings['btn_title']}</a>";
 		}
 
-		echo "		
-				</div>
-			</div>
-		";
+		echo "</div>";
+
+		if( $settings['shortcode'] ){
+		    echo do_shortcode( "<div class='hero__form'>{$settings['shortcode']}</div>" );
+        }
+
+		echo "
+                </div>
+            </div>
+        ";
     }
 
 	protected function _content_template(){

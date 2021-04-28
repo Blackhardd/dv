@@ -1,23 +1,150 @@
 <?php
 
-if( !shortcode_exists( 'social_icons' ) ) :
+if( !shortcode_exists( 'social_icons' ) ) {
     add_shortcode( 'social_icons', 'dv_social_icons_sc' );
     function dv_social_icons_sc( $atts ){
         $atts = shortcode_atts( array(
-            'facebook'  => '',
+            'facebook' => '',
             'instagram' => ''
         ), $atts, 'social_icons' );
 
-        $facebook_icon = '<svg width="20" height="20" fill="none"><path d="M19.22 13.75c.43 0 .78-.35.78-.78V3.12C20 1.4 18.6 0 16.87 0H3.13A3.13 3.13 0 000 3.13v13.75C0 18.6 1.4 20 3.13 20h13.75C18.6 20 20 18.6 20 16.87a.78.78 0 10-1.56 0c0 .87-.7 1.57-1.57 1.57h-3.82v-5.7h1.8c.4 0 .73-.3.78-.7l.1-.85a.78.78 0 00-.77-.88h-1.91V7.7c0-.65.52-1.18 1.17-1.18h.98c.43 0 .78-.35.78-.78v-.79c0-.4-.3-.73-.7-.78-.4-.04-.82-.07-1.06-.07-.91 0-1.83.39-2.5 1.06-.7.69-1.1 1.59-1.1 2.54v2.61H8.88a.78.78 0 00-.78.78v.86c0 .43.35.78.78.78h1.76v5.7h-7.5c-.87 0-1.57-.7-1.57-1.55V3.13c0-.87.7-1.57 1.56-1.57h13.75c.87 0 1.57.7 1.57 1.56v9.85c0 .43.35.78.78.78z" /></svg>';
-        $instagram_icon = '<svg width="20" height="20" fill="none"><g clip-path="url(#clip0)"><path d="M10.2 20H10a69.5 69.5 0 01-4.43-.12 5.91 5.91 0 01-3.4-1.3 5.47 5.47 0 01-1.85-2.96 13.16 13.16 0 01-.3-3.14 219.16 219.16 0 010-4.96c.02-1.01.03-2.07.3-3.14a5.47 5.47 0 011.84-2.97A5.91 5.91 0 015.57.12C6.98.04 8.43 0 10 0c1.57 0 3.02.04 4.43.12 1.29.08 2.47.53 3.4 1.3.91.73 1.53 1.73 1.84 2.96.28 1.07.3 2.13.3 3.14a215.43 215.43 0 010 4.96.78.78 0 01-1.56-.02 215.3 215.3 0 000-4.92c0-.92-.02-1.88-.25-2.77a3.95 3.95 0 00-1.31-2.15 4.3 4.3 0 00-2.52-.94c-1.37-.08-2.79-.12-4.33-.12s-2.96.04-4.33.12a4.3 4.3 0 00-2.52.94 3.94 3.94 0 00-1.31 2.15c-.23.89-.24 1.85-.26 2.77a220.45 220.45 0 000 4.92c.02.92.03 1.88.26 2.77.23.9.67 1.62 1.31 2.15.7.56 1.54.88 2.52.94a68 68 0 004.33.12c1.54 0 2.96-.04 4.33-.12a4.3 4.3 0 002.52-.94c.46-.38.82-.86 1.07-1.44a.78.78 0 011.43.62 5.3 5.3 0 01-1.51 2.03 5.91 5.91 0 01-3.41 1.29c-1.35.08-2.74.12-4.23.12zm4.64-10a4.89 4.89 0 10-9.77.01 4.89 4.89 0 009.77-.01zm-1.56 0a3.32 3.32 0 11-6.65 0 3.32 3.32 0 016.65 0zm2.11-6.45a1.17 1.17 0 100 2.35 1.17 1.17 0 000-2.35z" /></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>';
+        $facebook_icon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.48 0H3.52A3.52 3.52 0 000 3.52v16.96A3.52 3.52 0 003.52 24h7.07v-8.48H7.8V11.3h2.8V8.44c0-2.33 1.9-4.22 4.22-4.22h4.27v4.22H14.8v2.86h4.27l-.7 4.22H14.8V24h5.67A3.52 3.52 0 0024 20.48V3.52A3.52 3.52 0 0020.48 0z" /></svg>';
+        $instagram_icon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.484 0H3.516A3.52 3.52 0 000 3.516v16.968A3.52 3.52 0 003.516 24h16.968A3.52 3.52 0 0024 20.484V3.516A3.52 3.52 0 0020.484 0zm-8.437 18.281a6.335 6.335 0 01-6.328-6.328 6.335 6.335 0 016.328-6.328 6.335 6.335 0 016.328 6.328 6.335 6.335 0 01-6.328 6.328zm7.031-11.25a2.112 2.112 0 01-2.11-2.11c0-1.162.947-2.109 2.11-2.109 1.163 0 2.11.947 2.11 2.11 0 1.163-.947 2.11-2.11 2.11z" /><path d="M19.078 4.219a.704.704 0 100 1.407.704.704 0 000-1.407zM12.047 7.031a4.928 4.928 0 00-4.922 4.922 4.928 4.928 0 004.922 4.922 4.928 4.928 0 004.922-4.922 4.928 4.928 0 00-4.922-4.922z" /></svg>';
 
         $html = '<div class="social-icons">';
 
-        $html .= ( $atts['facebook'] ) ? "<a href='{$atts['facebook']}' target='_blank'>{$facebook_icon}</a>" : '';
-        $html .= ( $atts['instagram'] ) ? "<a href='{$atts['instagram']}' target='_blank'>{$instagram_icon}</a>" : '';
+        $html .= ($atts['facebook']) ? "<a href='{$atts['facebook']}' target='_blank'>{$facebook_icon}</a>" : '';
+        $html .= ($atts['instagram']) ? "<a href='{$atts['instagram']}' target='_blank'>{$instagram_icon}</a>" : '';
 
         $html .= '</div>';
 
         return $html;
     }
-endif;
+}
+
+if( !shortcode_exists( 'multistep_form' ) ){
+    add_shortcode( 'multistep_form', 'dv_multistep_form_sc' );
+    function dv_multistep_form_sc(){
+        wp_enqueue_script( 'dv-multistep-form' );
+        ob_start(); ?>
+            <div class="multistep-form">
+                <ul class="multistep-form__pagination">
+                    <li class="active" data-step="1">1</li>
+                    <li data-step="2">2</li>
+                    <li data-step="3">3</li>
+                </ul>
+                <form>
+                    <div class="multistep-form__step active" data-step="1">
+                        <div class="multistep-form__fields">
+                            <div class="field">
+                                <div class="field__label">V Prague Fertility Centre:</div>
+                                <div class="radio">
+                                    <input type="radio" name="is_first_time" id="first-time">
+                                    <label for="first-time">Daruji zde poprvé</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="is_first_time" id="not-first-time">
+                                    <label for="not-first-time">Již jsem zde darovala</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multistep-form__step" data-step="2">
+                        <div class="multistep-form__fields">
+                            <div class="field">
+                                <div class="input">
+                                    <input type="text" name="name" id="name" placeholder="Jméno *">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="input">
+                                    <input type="text" name="surname" id="surname" placeholder="Příjmení *">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="input">
+                                    <input type="email" name="email" id="email" placeholder="Email *">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="input">
+                                    <input type="tel" name="phone" id="phone" placeholder="Telefon *">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label">Rok narodenia *</div>
+                                <div class="input">
+                                    <input type="date" name="birthdate" id="birthdate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multistep-form__step" data-step="3">
+                        <div class="multistep-form__fields" data-group="new">
+                            <div class="fields two">
+                                <div class="field">
+                                    <div class="field__label">Výška (cm) *</div>
+                                    <div class="input">
+                                        <input type="number" min="0" max="250" name="height" id="height">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="field__label">Váha (kg) *</div>
+                                    <div class="input">
+                                        <input type="number" min="0" max="250" name="weight" id="weight">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label">Léčila jste se někdy na neplodnost?</div>
+                                <div class="toggle">
+                                    <div class="toggle__label">Ne</div>
+                                    <label>
+                                        <input type="checkbox" name="infertility_threatment">
+                                        <span class="toggle__slider"></span>
+                                    </label>
+                                    <div class="toggle__label">Ano</div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label">Darovala jste někdy vajíčka?</div>
+                                <div class="toggle">
+                                    <div class="toggle__label">Ne</div>
+                                    <label>
+                                        <input type="checkbox" name="eggs_donated">
+                                        <span class="toggle__slider"></span>
+                                    </label>
+                                    <div class="toggle__label">Ano</div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="field__label">Jste přihlášena k veřejnému zdravotnímu pojištění v České republice?</div>
+                                <div class="toggle">
+                                    <div class="toggle__label">Ne</div>
+                                    <label>
+                                        <input type="checkbox" name="insurance_registration">
+                                        <span class="toggle__slider"></span>
+                                    </label>
+                                    <div class="toggle__label">Ano</div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="input">
+                                    <textarea name="comment" id="comment" rows="3" placeholder="Poznámka"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="multistep-form__fields" data-group="existing">
+
+                        </div>
+                    </div>
+                </form>
+                <div class="multistep-form__response"></div>
+                <div class="multistep-form__nav">
+                    <button class="button button--outline">Další</button>
+                </div>
+            </div>
+        <?php
+        return ob_get_clean();
+    }
+}

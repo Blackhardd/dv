@@ -8,16 +8,17 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( array( 'header-transparent' ) ); ?>>
 <?php wp_body_open(); ?>
 
-<header class="site-header">
+<header class="site-header transparent">
     <div class="site-header__inner">
         <div class="site-logo">
             <?php the_custom_logo(); ?>
         </div>
 
         <nav class="site-nav">
+            <button class="site-nav__toggler"><span></span><span></span><span></span></button>
             <?php wp_nav_menu( array(
 				'theme_location' => 'primary-menu',
 				'menu_id'        => 'main-menu',
