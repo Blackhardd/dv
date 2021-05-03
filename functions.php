@@ -1,7 +1,7 @@
 <?php
 
 if( !defined( 'DV_THEME_VERSION' ) ){
-	define( 'DV_THEME_VERSION', '0.21' );
+	define( 'DV_THEME_VERSION', '0.22b' );
 }
 
 
@@ -52,7 +52,24 @@ function dv_enqueue_scripts(){
     wp_enqueue_style( 'dv-theme', get_stylesheet_uri(), array(), DV_THEME_VERSION );
 
     wp_enqueue_script( 'dv-frontend', get_template_directory_uri() . '/assets/js/frontend.js', array( 'jquery' ), DV_THEME_VERSION, true );
+
+
+    wp_localize_script( 'dv-multistep-form', '_dv', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' )
+    ) );
 }
+
+
+/**
+ * Helpers
+ */
+include TEMPLATEPATH . '/inc/helpers.php';
+
+
+/**
+ * AJAX
+ */
+include TEMPLATEPATH . '/inc/ajax.php';
 
 
 /**

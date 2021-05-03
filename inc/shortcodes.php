@@ -28,6 +28,9 @@ if( !shortcode_exists( 'multistep_form' ) ){
         wp_enqueue_script( 'dv-multistep-form' );
         ob_start(); ?>
             <div class="multistep-form">
+                <div class="multistep-form__success">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+                </div>
                 <ul class="multistep-form__pagination">
                     <li class="active" data-step="1">1</li>
                     <li data-step="2">2</li>
@@ -37,13 +40,13 @@ if( !shortcode_exists( 'multistep_form' ) ){
                     <div class="multistep-form__step active" data-step="1">
                         <div class="multistep-form__fields">
                             <div class="field">
-                                <div class="field__label">V Prague Fertility Centre:</div>
+                                <label>V Prague Fertility Centre:</label>
                                 <div class="radio">
-                                    <input type="radio" name="is_first_time" id="first-time">
+                                    <input type="radio" name="donator" value="new" id="first-time">
                                     <label for="first-time">Daruji zde poprvé</label>
                                 </div>
                                 <div class="radio">
-                                    <input type="radio" name="is_first_time" id="not-first-time">
+                                    <input type="radio" name="donator" value="existing" id="not-first-time">
                                     <label for="not-first-time">Již jsem zde darovala</label>
                                 </div>
                             </div>
@@ -72,76 +75,114 @@ if( !shortcode_exists( 'multistep_form' ) ){
                                 </div>
                             </div>
                             <div class="field">
-                                <div class="field__label">Rok narodenia *</div>
+                                <label for="birthdate">Rok narození *</label>
                                 <div class="input">
                                     <input type="date" name="birthdate" id="birthdate">
                                 </div>
                             </div>
+                            <div class="field">
+                                <label for="communication_method">Preferovaný způsob komunikace *</label>
+                                <div class="select">
+                                    <select name="communication_method" id="communication_method">
+                                        <option value="" disabled selected>Vybrat</option>
+                                        <option value="E-mail">E-mail</option>
+                                        <option value="Telefon">Telefon</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="multistep-form__step" data-step="3">
-                        <div class="multistep-form__fields" data-group="new">
-                            <div class="fields two">
-                                <div class="field">
-                                    <div class="field__label">Výška (cm) *</div>
-                                    <div class="input">
-                                        <input type="number" min="0" max="250" name="height" id="height">
+                    <div class="multistep-form__step multistep-form__step--conditional" data-step="3">
+                        <div class="multistep-form__fields">
+                            <div class="multistep-form__fields-group" data-group="new">
+                                <div class="fields two">
+                                    <div class="field">
+                                        <label for="height">Výška (cm) *</label>
+                                        <div class="input">
+                                            <input type="number" min="0" max="250" name="height" id="height">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="weight">Váha (kg) *</label>
+                                        <div class="input">
+                                            <input type="number" min="0" max="250" name="weight" id="weight">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <div class="field__label">Váha (kg) *</div>
-                                    <div class="input">
-                                        <input type="number" min="0" max="250" name="weight" id="weight">
+                                    <label>Léčila jste se někdy na neplodnost?</label>
+                                    <div class="toggle">
+                                        <div class="toggle__label">Ne</div>
+                                        <label>
+                                            <input type="checkbox" name="infertility_threatment">
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                        <div class="toggle__label">Ano</div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Darovala jste někdy vajíčka?</label>
+                                    <div class="toggle">
+                                        <div class="toggle__label">Ne</div>
+                                        <label>
+                                            <input type="checkbox" name="eggs_donated">
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                        <div class="toggle__label">Ano</div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Jste přihlášena k veřejnému zdravotnímu pojištění v České republice?</label>
+                                    <div class="toggle">
+                                        <div class="toggle__label">Ne</div>
+                                        <label>
+                                            <input type="checkbox" name="insurance_registration">
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                        <div class="toggle__label">Ano</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="field__label">Léčila jste se někdy na neplodnost?</div>
-                                <div class="toggle">
-                                    <div class="toggle__label">Ne</div>
-                                    <label>
-                                        <input type="checkbox" name="infertility_threatment">
-                                        <span class="toggle__slider"></span>
-                                    </label>
-                                    <div class="toggle__label">Ano</div>
+                            <div class="multistep-form__fields-group" data-group="existing">
+                                <div class="field">
+                                    <label for="last-donation">Poslední darování</label>
+                                    <div class="input">
+                                        <input type="date" name="last_donation" id="last-donation">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="last-menstruation">Datum poslední menstruace - 1. den *</label>
+                                    <div class="input">
+                                        <input type="date" name="last_menstruation" id="last-menstruation">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Hormonální antikoncepce? *</label>
+                                    <div class="toggle">
+                                        <div class="toggle__label">Ne</div>
+                                        <label>
+                                            <input type="checkbox" name="hormonal_anticonception">
+                                            <span class="toggle__slider"></span>
+                                        </label>
+                                        <div class="toggle__label">Ano</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="field__label">Darovala jste někdy vajíčka?</div>
-                                <div class="toggle">
-                                    <div class="toggle__label">Ne</div>
-                                    <label>
-                                        <input type="checkbox" name="eggs_donated">
-                                        <span class="toggle__slider"></span>
-                                    </label>
-                                    <div class="toggle__label">Ano</div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="field__label">Jste přihlášena k veřejnému zdravotnímu pojištění v České republice?</div>
-                                <div class="toggle">
-                                    <div class="toggle__label">Ne</div>
-                                    <label>
-                                        <input type="checkbox" name="insurance_registration">
-                                        <span class="toggle__slider"></span>
-                                    </label>
-                                    <div class="toggle__label">Ano</div>
-                                </div>
-                            </div>
+
                             <div class="field">
                                 <div class="input">
                                     <textarea name="comment" id="comment" rows="3" placeholder="Poznámka"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="multistep-form__fields" data-group="existing">
-
-                        </div>
                     </div>
+                    <input type="hidden" name="action" value="donation_apply">
                 </form>
                 <div class="multistep-form__response"></div>
                 <div class="multistep-form__nav">
-                    <button class="button button--outline">Další</button>
+                    <button class="multistep-form__back-btn button button--link">Předchozí</button>
+                    <button class="multistep-form__next-btn button button--link">Další</button>
                 </div>
             </div>
         <?php

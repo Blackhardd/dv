@@ -3,18 +3,36 @@ jQuery(document).ready(function($){
         let active_step = 1
         let max_step = 3;
 
+        let step_condition = false;
+
         let $form = $('.multistep-form');
         let $form_response = $('.multistep-form__response');
 
-        $('.multistep-form__nav button').on('click', function(){
+        $('.multistep-form__back-btn').on('click', go_prev_step);
+
+        $('.multistep-form__next-btn').on('click', function(){
             if(validate_active_step()){
                 go_next_step();
             }
 
             if(active_step == max_step){
+                step_condition = $('[name="donator"]:checked').val();
+                $('.multistep-form__step[data-step="' + active_step + '"] .multistep-form__fields-group[data-group="' + step_condition + '"]').addClass('active');
                 $(this).text('Odeslat dotazník');
             }
         });
+
+        function go_prev_step(){
+            if(active_step > 1){
+                active_step--;
+
+                $('.multistep-form__step').removeClass('active');
+                $('.multistep-form__pagination li').removeClass('active');
+
+                $('.multistep-form__step[data-step="' + active_step + '"]').addClass('active');
+                $('.multistep-form__pagination li[data-step="' + active_step + '"]').addClass('active');
+            }
+        }
 
         function go_next_step(){
             if(active_step < max_step){
@@ -28,10 +46,19 @@ jQuery(document).ready(function($){
             }
             else{
                 $form.addClass('loading');
-                setTimeout(function(){
-                    $form.removeClass('loading');
-                    location.reload();
-                }, 2000);
+                let fd = new FormData($form.find('form')[0]);
+
+                $.ajax({
+                    url: _dv.ajax_url,
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function(data){
+                        $form.removeClass('loading');
+                        $form.addClass('success');
+                    }
+                });
             }
         }
 
@@ -41,8 +68,18 @@ jQuery(document).ready(function($){
 
             let $active_step = $('.multistep-form__step[data-step="' + active_step + '"]');
 
-            let $radio = $active_step.find('input[type="radio"]');
-            let $inputs = $active_step.find('input[type="text"],input[type="tel"],input[type="email"],input[type="number"],input[type="date"]');
+            let $radio = null;
+            let $inputs = null;
+
+            if($active_step.hasClass('multistep-form__step--conditional')){
+                let $active_group = $active_step.find('.multistep-form__fields-group.active');
+                $radio = $active_group.find('input[type="radio"]');
+                $inputs = $active_group.find('input[type="text"],input[type="tel"],input[type="email"],input[type="number"],input[type="date"]');
+            }
+            else{
+                $radio = $active_step.find('input[type="radio"]');
+                $inputs = $active_step.find('input[type="text"],input[type="tel"],input[type="email"],input[type="number"],input[type="date"]');
+            }
 
             if($radio.length){
                 $radio.each(function(i){

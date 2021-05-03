@@ -7,6 +7,10 @@ jQuery(document).ready(function($){
 
     let $mobile_nav_toggler = $('.site-nav__toggler');
 
+    let $hero_form_toggler = $('a[href="#form"]');
+
+    let $chat_toggler = $('a[href="#chat"]');
+
     if($(window).scrollTop() > $header.height()){
         if(!$header.hasClass('transparent')){
             $('body').addClass('header-fixed');
@@ -49,5 +53,28 @@ jQuery(document).ready(function($){
 
     $mobile_nav_toggler.on('click', function(){
         $(this).toggleClass('active');
-    })
+    });
+
+    $hero_form_toggler.on('click', function(){
+        if($(window).scrollTop() > 600){
+            $('html, body').animate({ scrollTop: 0 }, 'slow', function(){
+                $('.hero__form').addClass('active');
+            });
+        }
+        else{
+            $('.hero__form').addClass('active');
+        }
+
+        return false;
+    });
+
+    $chat_toggler.on('click', function(){
+        smartsupp('chat:open');
+        return false;
+    });
+
+    // Bycicle
+    setTimeout(function(){
+        $('.elementor-tab-title.elementor-active').trigger('click');
+    }, 500);
 });
