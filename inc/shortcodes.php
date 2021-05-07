@@ -31,6 +31,12 @@ if( !shortcode_exists( 'multistep_form' ) ){
                 <div class="multistep-form__success">
                     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
                 </div>
+                <div class="multistep-form__failed">
+                    <div class="message">
+                        <div class="message__header"></div>
+                        <div class="message__body"></div>
+                    </div>
+                </div>
                 <ul class="multistep-form__pagination">
                     <li class="active" data-step="1">1</li>
                     <li data-step="2">2</li>
@@ -56,32 +62,32 @@ if( !shortcode_exists( 'multistep_form' ) ){
                         <div class="multistep-form__fields">
                             <div class="field">
                                 <div class="input">
-                                    <input type="text" name="name" id="name" placeholder="Jméno *">
+                                    <input type="text" name="name" id="name" placeholder="Jméno*">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input">
-                                    <input type="text" name="surname" id="surname" placeholder="Příjmení *">
+                                    <input type="text" name="surname" id="surname" placeholder="Příjmení*">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input">
-                                    <input type="email" name="email" id="email" placeholder="Email *">
+                                    <input type="email" name="email" id="email" placeholder="Email*">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input">
-                                    <input type="tel" name="phone" id="phone" placeholder="Telefon *">
+                                    <input type="tel" name="phone" id="phone" placeholder="Telefon*">
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="birthdate">Rok narození *</label>
+                                <label for="birthdate">Rok narození<span class="required-mark"></span></label>
                                 <div class="input">
                                     <input type="date" name="birthdate" id="birthdate">
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="communication_method">Preferovaný způsob komunikace *</label>
+                                <label for="communication_method">Preferovaný způsob komunikace<span class="required-mark"></span></label>
                                 <div class="select">
                                     <select name="communication_method" id="communication_method">
                                         <option value="" disabled selected>Vybrat</option>
@@ -91,6 +97,14 @@ if( !shortcode_exists( 'multistep_form' ) ){
                                     </select>
                                 </div>
                             </div>
+                            <div class="field">
+                                <div class="acceptance">
+                                    <label>
+                                        <input type="checkbox" name="acceptance">
+                                        Potvrzuji prostudování a souhlas s <a href="#">Informací pro dárkyně</a>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="multistep-form__step multistep-form__step--conditional" data-step="3">
@@ -98,13 +112,13 @@ if( !shortcode_exists( 'multistep_form' ) ){
                             <div class="multistep-form__fields-group" data-group="new">
                                 <div class="fields two">
                                     <div class="field">
-                                        <label for="height">Výška (cm) *</label>
+                                        <label for="height">Výška (cm)<span class="required-mark"></span></label>
                                         <div class="input">
                                             <input type="number" min="0" max="250" name="height" id="height">
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <label for="weight">Váha (kg) *</label>
+                                        <label for="weight">Váha (kg)<span class="required-mark"></span></label>
                                         <div class="input">
                                             <input type="number" min="0" max="250" name="weight" id="weight">
                                         </div>
@@ -152,13 +166,13 @@ if( !shortcode_exists( 'multistep_form' ) ){
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label for="last-menstruation">Datum poslední menstruace - 1. den *</label>
+                                    <label for="last-menstruation">Datum poslední menstruace - 1. den<span class="required-mark"></span></label>
                                     <div class="input">
                                         <input type="date" name="last_menstruation" id="last-menstruation">
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Hormonální antikoncepce? *</label>
+                                    <label>Hormonální antikoncepce?<span class="required-mark"></span></label>
                                     <div class="toggle">
                                         <div class="toggle__label">Ne</div>
                                         <label>
@@ -181,7 +195,7 @@ if( !shortcode_exists( 'multistep_form' ) ){
                 </form>
                 <div class="multistep-form__response"></div>
                 <div class="multistep-form__nav">
-                    <button class="multistep-form__back-btn button button--link">Předchozí</button>
+                    <button class="multistep-form__back-btn button button--link" disabled>Předchozí</button>
                     <button class="multistep-form__next-btn button button--link">Další</button>
                 </div>
             </div>

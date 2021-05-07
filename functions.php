@@ -1,7 +1,7 @@
 <?php
 
 if( !defined( 'DV_THEME_VERSION' ) ){
-	define( 'DV_THEME_VERSION', '0.22c' );
+	define( 'DV_THEME_VERSION', '0.22d' );
 }
 
 
@@ -12,7 +12,8 @@ add_action( 'after_setup_theme', 'dv_theme_supports' );
 if( !function_exists( 'dv_theme_supports' ) ) :
     function dv_theme_supports(){
         register_nav_menus( array(
-            'primary-menu' => esc_html__( 'Primary', 'dv' ),
+            'primary-menu'  => esc_html__( 'Primary', 'dv' ),
+            'homepage-menu' => esc_html__( 'Homepage', 'dv' )
         ) );
 
         add_theme_support( 'title-tag' );
@@ -82,6 +83,18 @@ include TEMPLATEPATH . '/inc/shortcodes.php';
  * Elementor Widgets
  */
 include TEMPLATEPATH . '/inc/elementor.php';
+
+
+/**
+ *  Adding action button to main menu.
+ */
+add_filter( 'wp_nav_menu_items', 'dv_main_menu_add_action_button' );
+function dv_main_menu_add_action_button( $items ){
+    $button_title = __( 'Chci darovat', 'dv' );
+    $button = "<li class='menu-item menu-item-type-action'><a href='#form' class='button button--outline'>{$button_title}</a></li>";
+
+    return $items . $button;
+}
 
 
 /**
