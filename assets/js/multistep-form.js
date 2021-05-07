@@ -79,6 +79,9 @@ jQuery(document).ready(function($){
                     success: function(data){
                         $form.removeClass('loading');
                         $form.addClass('success');
+                        setTimeout(function(){
+                            location.assign(data);
+                        }, 2000);
                     }
                 });
             }
