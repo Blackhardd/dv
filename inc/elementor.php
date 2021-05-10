@@ -10,6 +10,10 @@ function dv_load_elementor_widgets(){
         require TEMPLATEPATH . '/elementor/class-dv-steps-widget.php';
     endif;
 
+    if( !class_exists( 'DV_Gallery' ) ) :
+        require TEMPLATEPATH . '/elementor/class-dv-gallery-widget.php';
+    endif;
+
     if( !class_exists( 'DV_Button_Widget' ) ) :
         require TEMPLATEPATH . '/elementor/class-dv-button-widget.php';
     endif;
@@ -24,6 +28,7 @@ function dv_load_elementor_widgets(){
 
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new DV_Hero_Widget() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new DV_Steps() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new DV_Gallery() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new DV_Button_Widget() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new DV_List_Widget() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new DV_Person_Contact_Widget() );

@@ -67,6 +67,18 @@ class DV_Button_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+        $this->add_control(
+            'mobile_centering',
+            [
+                'label'         => __( 'Center on mobile', 'dv' ),
+                'type'          => \Elementor\Controls_Manager::SWITCHER,
+                'label_on'      => __( 'On', 'dv' ),
+                'label_off'     => __( 'Off', 'dv' ),
+                'return_value'  => 'yes',
+                'default'       => 'yes'
+            ]
+        );
+
 		$this->end_controls_section();
     }
 
@@ -74,6 +86,11 @@ class DV_Button_Widget extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
 
         $icon = '';
+        $classes = 'button-wrap ';
+
+        if( $settings['mobile_centering'] == 'yes' ){
+            $classes .= 'button-wrap--m-center';
+        }
 
         if( $settings['icon_class'] ){
             $icon = "<i class='{$settings['icon_class']}'></i>";
@@ -81,7 +98,7 @@ class DV_Button_Widget extends \Elementor\Widget_Base {
 
         if( $settings['title'] && $settings['link'] ){
             echo "
-                <div class='button-wrap' style='text-align: {$settings['alignment']};'>
+                <div class='{$classes}' style='text-align: {$settings['alignment']};'>
                     <a href='{$settings['link']}' class='button'>{$settings['title']}{$icon}</a>
                 </div>
             ";

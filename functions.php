@@ -1,7 +1,7 @@
 <?php
 
 if( !defined( 'DV_THEME_VERSION' ) ){
-	define( 'DV_THEME_VERSION', '0.25' );
+	define( 'DV_THEME_VERSION', '0.25a' );
 }
 
 
@@ -43,17 +43,29 @@ endif;
 
 
 /**
+ * Image sizes
+ */
+if( function_exists( 'add_image_size' ) ) :
+    add_image_size( 'gallery-thumb', 200, 200, true );
+endif;
+
+
+/**
  * Enqueue scripts and styles
  */
 add_action( 'wp_enqueue_scripts', 'dv_enqueue_scripts' );
 function dv_enqueue_scripts(){
+    wp_register_style( 'glider', '//cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css', array(), DV_THEME_VERSION );
+    wp_register_style( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', array(), DV_THEME_VERSION );
+
+    wp_register_script( 'glider', '//cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js', array(), DV_THEME_VERSION, true );
+    wp_register_script( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array(), DV_THEME_VERSION, true );
     wp_register_script( 'dv-multistep-form', get_template_directory_uri() . '/assets/js/multistep-form.js', array(), DV_THEME_VERSION, true );
 
     wp_enqueue_style( 'icofont', get_template_directory_uri() . '/assets/css/icofont.min.css', array(), DV_THEME_VERSION );
     wp_enqueue_style( 'dv-theme', get_stylesheet_uri(), array(), DV_THEME_VERSION );
 
     wp_enqueue_script( 'dv-frontend', get_template_directory_uri() . '/assets/js/frontend.js', array( 'jquery' ), DV_THEME_VERSION, true );
-
 
     wp_localize_script( 'dv-multistep-form', '_dv', array(
         'ajax_url' => admin_url( 'admin-ajax.php' )

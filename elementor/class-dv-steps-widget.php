@@ -1,6 +1,14 @@
 <?php
 
 class DV_Steps extends \Elementor\Widget_Base {
+    public function __construct( $data = [], $args = null ){
+        parent::__construct( $data, $args );
+
+        add_action( 'elementor/frontend/after_enqueue_styles', [$this, 'widget_styles'] );
+
+        wp_register_script( 'dv-steps', get_template_directory_uri() . '/assets/js/elementor/steps.js', [ 'elementor-frontend', 'glider' ], DV_THEME_VERSION, true );
+    }
+
 	public function get_name(){
         return 'dv_steps';
     }
@@ -15,6 +23,14 @@ class DV_Steps extends \Elementor\Widget_Base {
 
 	public function get_categories(){
         return ['general'];
+    }
+
+    public function widget_styles(){
+        wp_enqueue_style( 'glider' );
+    }
+
+    public function get_script_depends(){
+        return [ 'dv-steps' ];
     }
 
 	protected function _register_controls(){
@@ -55,6 +71,15 @@ class DV_Steps extends \Elementor\Widget_Base {
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
+            'step_number',
+            [
+                'label'         => __( 'Number', 'dv' ),
+                'type'          => \Elementor\Controls_Manager::TEXT,
+                'placeholder' 	=> __( 'Enter step number', 'dv' )
+            ]
+        );
+
+        $repeater->add_control(
             'step_title',
             [
 				'label'         => __( 'Title', 'dv' ),
@@ -90,34 +115,31 @@ class DV_Steps extends \Elementor\Widget_Base {
 
         if( $settings['bg_color'] ){
             $style .= "background-color: {$settings['bg_color']};";
-            $style .= "border-radius: 0 32px;";
         }
 
         echo "<div class='steps' style='{$style}'>";
 
         if( $settings['steps_heading'] ){
             echo "
-                <div class='steps__left'>
-                    <div class='steps__title'>
-                        <h2 class='steps__heading'>{$settings['steps_heading']}</h2>
-                        <div class='steps__subheading'>{$settings['steps_subheading']}</div>
-                    </div>
+                <div class='steps__title'>
+                    <h2 class='steps__heading'>{$settings['steps_heading']}</h2>
+                    <div class='steps__subheading'>{$settings['steps_subheading']}</div>
                 </div>
             ";
         }
 
         if( $settings['steps'] ){
-            echo "<div class='steps__right'>";
+            echo "<div class='steps__slider'>";
 
             foreach( $settings['steps'] as $key => $step ) :
-                $number = $key + 1;
-
                 echo "
                     <div class='step'>
-                        <div class='step__number'>{$number}</div>
                         <div class='step__inner'>
-                            <h3 class='step__heading'>{$step['step_title']}</h3>
-                            <div class='step__content'>{$step['step_content']}</div>
+                            <div class='step__number'>{$step['step_number']}</div>
+                            <div class='step__content'>
+                                <h3 class='step__heading'>{$step['step_title']}</h3>
+                                <div class='step__desc'>{$step['step_content']}</div>
+                            </div>
                         </div>
                     </div>
                 ";

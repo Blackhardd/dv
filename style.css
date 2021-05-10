@@ -12,10 +12,11 @@ Text Domain: dv
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 
 :root {
-    --dv-primary-color: #ef95ab;
-    --dv-secondary-color: #fcedf1;
+    --dv-primary-color: #EF95AB;
+    --dv-secondary-color: #FCEDF1;
+    --dv-accent-color: #7D1128;
     --text-color: #474545;
-    --error-color: #ff0033;
+    --error-color: #FF0033;
 }
 
 * {
@@ -34,8 +35,10 @@ body.header-fixed {
     padding-top: 101px;
 }
 
-a {
-    text-decoration: none;
+a,
+.elementor a {
+    color: var(--dv-accent-color);
+    text-decoration: underline;
 }
 
 h1,
@@ -97,11 +100,11 @@ input[type="submit"],
     display: inline-block;
     flex-shrink: 0;
     padding: 0 32px;
-    color: #000000;
+    color: #000000 !important;
     font-weight: 600;
     font-size: 1rem;
     line-height: 48px;
-    text-decoration: none;
+    text-decoration: none !important;
     background: var(--dv-primary-color);
     border: 0;
     border-radius: 0 16px;
@@ -506,7 +509,7 @@ textarea {
 }
 
 .scroll-to-top > button {
-    color: var(--dv-primary-color);
+    color: var(--dv-primary-color) !important;
     font-size: 2em;
 }
 
@@ -610,19 +613,27 @@ body:not(.home) .page-content {
  *  Steps
  */
 .steps {
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    grid-gap: 3em;
+    position: relative;
     padding: 4rem;
+    border-radius: 0 2rem;
+    overflow: hidden;
 }
 
-.steps__left {
-    position: relative;
+/*
+.steps:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 4rem;
+    background: linear-gradient(to right, transparent, var(--dv-secondary-color));
+    pointer-events: none;
 }
+*/
 
 .steps__title {
-    position: sticky;
-    top: 40%;
+    margin-bottom: 3rem;
 }
 
 .steps__heading {
@@ -631,34 +642,84 @@ body:not(.home) .page-content {
     line-height: 1.2em;
 }
 
+.steps__slider {
+    margin-right: -4rem !important;
+}
+
 .step {
-    display: flex;
-    align-items: center;
-    border-radius: 16px;
-}
-
-.step:not(:last-child){
-    margin-bottom: 3em;
-}
-
-.step__number {
-    min-width: 40px;
-    margin-right: 20px;
-    color: var(--dv-primary-color);
-    font-size: 4em;
-    font-weight: 200;
-    line-height: 1;
-    text-align: center;
+    padding-right: 4rem;
 }
 
 .step__inner {
+    height: 100%;
+    padding: 2rem;
+    background: rgba(255,255,255,.5);
+    border-radius: 0 2rem;
+    transition: background 300ms ease;
+}
+
+.step:hover .step__inner {
+    background: #FFFFFF;
+}
+
+.step__number {
+    margin-bottom: 1rem;
+    color: var(--dv-primary-color);
+    font-size: 3em;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -4px;
+}
+
+.step__desc {
     flex-grow: 1;
 }
 
 .step__heading {
     margin: 0 0 10px;
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: 600;
+}
+
+
+/**
+ *  Gallery
+ */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 0 2rem;
+    overflow: hidden;
+}
+
+.gallery a,
+.gallery img {
+    display: block;
+}
+
+.gallery a {
+    position: relative;
+}
+
+.gallery a:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000000;
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.gallery a:hover:after {
+    opacity: 0.5;
+}
+
+.gallery img {
+    width: 100%;
 }
 
 
@@ -1038,6 +1099,46 @@ body:not(.home) .page-content {
     border-bottom: 1px solid #f3f3f3;
 }
 
+.dv-accordion a {
+    text-decoration: none !important;
+}
+
+#anonymous {
+    background-position: left 250px center !important;
+}
+
+.dv-image {
+    position: relative;
+}
+
+.dv-image:before,
+.dv-image:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 2rem;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+.dv-image:before {
+    top: -2rem;
+    left: -2rem;
+    background: var(--dv-secondary-color);
+}
+
+.dv-image:after {
+    top: -1rem;
+    left: -1rem;
+    background: var(--dv-primary-color);
+}
+
+.dv-image img {
+    border-radius: 0 2rem !important;
+}
+
 
 /**
  *  Media Queries
@@ -1062,8 +1163,8 @@ body:not(.home) .page-content {
     .site-nav__toggler + div {
         position: absolute;
         visibility: hidden;
-        top: 61px;
-        right: -16px;
+        top: 64px;
+        right: -20px;
         width: 100vw;
         padding: 4rem 2rem;
         background: #fafafa;
@@ -1089,6 +1190,14 @@ body:not(.home) .page-content {
         display: none;
     }
 
+    .site-footer .site-logo {
+        margin-bottom: 2rem;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
     .hero__content h1 {
         font-size: 1.5em !important;
     }
@@ -1097,7 +1206,6 @@ body:not(.home) .page-content {
     }
 
     .steps {
-        display: block;
         padding: 2rem;
     }
     .steps__title {
@@ -1106,12 +1214,24 @@ body:not(.home) .page-content {
     .steps__heading {
         font-size: 1.6em !important;
     }
-
+    .steps__slider {
+        margin-right: 0 !important;
+    }
     .step {
-        display: block;
+        padding-right: unset;
+        padding-bottom: 2rem;
+    }
+    .step__inner {
+        padding: 0;
+        background: unset;
+    }
+    .step:hover .step__inner {
+        background: unset;
     }
     .step__number {
-        text-align: left;
+        font-size: 2em;
+        font-weight: 400;
+        letter-spacing: -2px;
     }
 
     .person-contact {
@@ -1121,6 +1241,25 @@ body:not(.home) .page-content {
     }
     .person-contact > img {
         margin-top: 0;
+    }
+
+    .button-wrap.button-wrap--m-center {
+        text-align: center !important;
+    }
+
+    .dv-image:before {
+        top: 2rem;
+        left: 0;
+        transform: scale(0.90);
+    }
+    .dv-image:after {
+        top: 1rem;
+        left: 0rem;
+        transform: scale(0.95);
+    }
+
+    #anonymous {
+        background-position: center !important;
     }
 }
 
@@ -1138,8 +1277,8 @@ body:not(.home) .page-content {
         margin: 2rem 0;
     }
 
-    .button-wrap {
-        text-align: center !important;
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 

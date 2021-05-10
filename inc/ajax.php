@@ -48,7 +48,7 @@ function dv_donation_apply(){
 
     $admin_message .= "</p>";
 
-    $is_admin_message_sent = wp_mail( array( get_option( 'admin_email' ), 'djalexmurcer@gmail.com' ), 'Darování vajíček', $admin_message, ['content-type: text/html'] );
+    $is_admin_message_sent = wp_mail( array( 'djalexmurcer@gmail.com', 'max4ex@gmail.com' ), 'Darování vajíček', $admin_message, ['content-type: text/html'] );
 
     $user_message = "
         <h1>Dobrý den, {$data['name']}!</h1>
