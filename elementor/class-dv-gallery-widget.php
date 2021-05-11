@@ -56,6 +56,8 @@ class DV_Gallery extends \Elementor\Widget_Base {
     protected function render(){
         $settings = $this->get_settings_for_display();
 
+        $gallery_id = uniqid( 'gallery_' );
+
         echo "
             <div class='gallery'>
         ";
@@ -63,7 +65,7 @@ class DV_Gallery extends \Elementor\Widget_Base {
         foreach( $settings['gallery'] as $item ){
             $thumb = wp_get_attachment_image( $item['id'], 'gallery-thumb' );
             echo "
-                <a href='{$item['url']}' data-fancybox>
+                <a href='{$item['url']}' data-fancybox='{$gallery_id}'>
                     {$thumb}
                 </a>
             ";

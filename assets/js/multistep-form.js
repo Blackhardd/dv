@@ -6,12 +6,17 @@ jQuery(document).ready(function($){
         let step_condition = false;
 
         let $form = $('.multistep-form');
-        let $birth_date = $form.find('[name="birthdate"]');
-        let $acceptance = $form.find('[name="acceptance"]');
-        let $infertility = $form.find('[name="infertility_threatment"]');
-        let $insurance = $form.find('[name="insurance_registration"]');
         let $form_response = $('.multistep-form__response');
         let $form_fail = $('.multistep-form__failed');
+
+        let $email = $form.find('[name="email"]');
+        let $phone = $form.find('[name="phone"]');
+        let $birth_date = $form.find('[name="birthdate"]');
+        let $acceptance = $form.find('[name="acceptance"]');
+        let $height = $form.find('[name="height"]');
+        let $weight = $form.find('[name="weight"]');
+        let $infertility = $form.find('[name="infertility_threatment"]');
+        let $insurance = $form.find('[name="insurance_registration"]');
 
         $('.multistep-form__back-btn').on('click', function(){
             go_prev_step();
@@ -26,7 +31,7 @@ jQuery(document).ready(function($){
         });
 
         $('.multistep-form__next-btn').on('click', function(){
-            if(validate_active_step() && validate_acceptance() && validate_birth_date() && validate_infertility() && validate_insurance()){
+            if(validate_active_step() && validate_required()){
                 go_next_step();
             }
 
@@ -164,6 +169,60 @@ jQuery(document).ready(function($){
             $form.addClass('failed');
         }
 
+        function validate_email(){
+            if(active_step == 2){
+                const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+                if($email.val() && !re.test(String($email.val()).toLowerCase())){
+                    $form_response.html('<div class="message error">Neplatná emailová adresa.</div>');
+                    $email.parent().addClass('error');
+                    setTimeout(function(){
+                        $email.parent().removeClass('error');
+                    }, 2000);
+                }
+
+                return re.test(String($email.val()).toLowerCase());
+            }
+            return true;
+        }
+
+        function validate_phone(){
+            if(active_step == 2){
+                const re = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
+                if($phone.val() && !re.test(String($phone.val()).toLowerCase())){
+                    $form_response.html('<div class="message error">Neplatné telefonní číslo.</div>');
+                    $phone.parent().addClass('error');
+                    setTimeout(function(){
+                        $phone.parent().removeClass('error');
+                    }, 2000);
+                }
+
+                return re.test(String($phone.val()).toLowerCase());
+            }
+            return true;
+        }
+
+        function validate_height(){
+            if(active_step == 3 && step_condition == 'new'){
+                if($height.val() < $height.attr('min') || $height.val() > $height.attr('max')){
+                    form_failed('Height 🙅‍♀️', 'Height.');
+                }
+
+                return $height.val() >= $height.attr('min') && $height.val() <= $height.attr('max');
+            }
+            return true;
+        }
+
+        function validate_weight(){
+            if(active_step == 3 && step_condition == 'new'){
+                if($weight.val() < $weight.attr('min') || $weight.val() > $weight.attr('max')){
+                    form_failed('Weight 🙅‍♀️', 'Weight.');
+                }
+
+                return $weight.val() >= $weight.attr('min') && $weight.val() <= $weight.attr('max');
+            }
+            return true;
+        }
+
         function validate_infertility(){
             if(active_step == 3 && step_condition == 'new'){
                 if($infertility.is(':checked')){
@@ -211,6 +270,10 @@ jQuery(document).ready(function($){
                 return $acceptance.is(':checked');
             }
             return true;
+        }
+
+        function validate_required(){
+            return validate_email() && validate_phone() && validate_birth_date() && validate_acceptance() && validate_height() && validate_weight() && validate_infertility() && validate_insurance();
         }
 
         function diff_years(dt1, dt2){

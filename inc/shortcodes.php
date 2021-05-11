@@ -114,13 +114,13 @@ if( !shortcode_exists( 'multistep_form' ) ){
                                     <div class="field">
                                         <label for="height">Výška (cm)<span class="required-mark"></span></label>
                                         <div class="input">
-                                            <input type="number" min="0" max="250" name="height" id="height">
+                                            <input type="number" min="140" max="200" name="height" id="height">
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label for="weight">Váha (kg)<span class="required-mark"></span></label>
                                         <div class="input">
-                                            <input type="number" min="0" max="250" name="weight" id="weight">
+                                            <input type="number" min="45" max="90" name="weight" id="weight">
                                         </div>
                                     </div>
                                 </div>
