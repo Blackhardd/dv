@@ -101,7 +101,7 @@ if( !shortcode_exists( 'multistep_form' ) ){
                                 <div class="acceptance">
                                     <label>
                                         <input type="checkbox" name="acceptance">
-                                        Potvrzuji prostudování a souhlas s <a href="#">Informací pro dárkyně</a>
+                                        Potvrzuji prostudování a souhlas s <a href="<?=get_privacy_policy_url(); ?>" target="_blank">Informací pro dárkyně</a>
                                     </label>
                                 </div>
                             </div>

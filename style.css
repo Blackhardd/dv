@@ -558,7 +558,7 @@ body:not(.home) .page-content {
 }
 
 .header-transparent .hero {
-    padding: 101px 0;
+    padding: 105px 0;
 }
 
 .hero__inner {
@@ -572,7 +572,7 @@ body:not(.home) .page-content {
 }
 
 .header-transparent .hero__inner {
-    min-height: calc(100vh - 202px);
+    min-height: calc(100vh - 210px);
 }
 
 .hero__content {
