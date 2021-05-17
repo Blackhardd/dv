@@ -1,7 +1,7 @@
 <?php
 
 if( !defined( 'DV_THEME_VERSION' ) ){
-	define( 'DV_THEME_VERSION', '0.4a' );
+	define( 'DV_THEME_VERSION', '0.51' );
 }
 
 
@@ -73,16 +73,7 @@ function dv_enqueue_scripts(){
 }
 
 
-/**
- * Helpers
- */
-include TEMPLATEPATH . '/inc/helpers.php';
-
-
-/**
- * AJAX
- */
-include TEMPLATEPATH . '/inc/ajax.php';
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 
 /**
@@ -94,7 +85,9 @@ include TEMPLATEPATH . '/inc/shortcodes.php';
 /**
  * Elementor Widgets
  */
-include TEMPLATEPATH . '/inc/elementor.php';
+if( is_plugin_active( 'elementor/elementor.php' ) ):
+    include TEMPLATEPATH . '/inc/elementor.php';
+endif;
 
 
 /**
@@ -103,9 +96,11 @@ include TEMPLATEPATH . '/inc/elementor.php';
 add_filter( 'wp_nav_menu_items', 'dv_main_menu_add_action_button' );
 function dv_main_menu_add_action_button( $items ){
     $button_title = __( 'Chci darovat', 'dv' );
-    $button = "<li class='menu-item menu-item-type-action'><a href='#form' class='button button--outline'>{$button_title}</a></li>";
+    $button_url = ( is_front_page() ) ? '#form' : get_home_url() . '#form';
 
-    return $items . $button;
+    $button = "<li class='menu-item menu-item-type-action'><a href='{$button_url}' class='button button--outline'>{$button_title}</a></li>";
+
+    return ( !is_page( 1581 ) && !is_privacy_policy() ) ? $items . $button : $items;
 }
 
 
@@ -114,10 +109,10 @@ function dv_main_menu_add_action_button( $items ){
  */
 add_action( 'wp_footer', 'dv_add_scroll_to_top_button' );
 function dv_add_scroll_to_top_button(){ ?>
-        <div class="scroll-to-top">
-            <button class="button button--icon">
-                <i class="icofont-arrow-up"></i>
-            </button>
-        </div>
+    <div class="scroll-to-top">
+        <button class="button button--icon">
+            <i class="icofont-arrow-up"></i>
+        </button>
+    </div>
     <?php
 }

@@ -98,6 +98,7 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
 
         $image = wp_get_attachment_image_url( $settings['image']['id'], 'full' );
+        $content_style = '';
 
         if( $settings['font_color'] ){
             $content_style = "color: {$settings['font_color']};";

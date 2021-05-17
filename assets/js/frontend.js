@@ -59,20 +59,28 @@ jQuery(document).ready(function($){
         $(this).toggleClass('active');
     });
 
+    /**
+     *  Hero Form Toggling
+     */
+    function show_hero_form(){
+        $('.hero__form').css('display', 'block');
+        setTimeout(function(){
+            $('.hero__form').addClass('active');
+        }, 50);
+    }
+
+    if(location.href.indexOf('#') != -1 && location.hash == '#form'){
+        show_hero_form();
+    }
+
     $hero_form_toggler.on('click', function(){
         if($(window).scrollTop() > 600){
             $('html, body').animate({ scrollTop: 0 }, 'slow', function(){
-                $('.hero__form').css('display', 'block');
-                setTimeout(function(){
-                    $('.hero__form').addClass('active');
-                }, 50);
+                show_hero_form();
             });
         }
         else{
-            $('.hero__form').css('display', 'block');
-            setTimeout(function(){
-                $('.hero__form').addClass('active');
-            }, 50);
+            show_hero_form();
         }
 
         if($(this).parent().hasClass('menu-item-type-action')){

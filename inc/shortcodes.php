@@ -46,14 +46,14 @@ if( !shortcode_exists( 'multistep_form' ) ){
                     <div class="multistep-form__step active" data-step="1">
                         <div class="multistep-form__fields">
                             <div class="field">
-                                <label>V Prague Fertility Centre:</label>
+                                <label><?=__( 'V Prague Fertility Centre:', 'dv' ); ?></label>
                                 <div class="radio">
                                     <input type="radio" name="donator" value="new" id="first-time">
-                                    <label for="first-time">Daruji zde poprvé</label>
+                                    <label for="first-time"><?=__( 'Daruji zde poprvé', 'dv' ); ?></label>
                                 </div>
                                 <div class="radio">
                                     <input type="radio" name="donator" value="existing" id="not-first-time">
-                                    <label for="not-first-time">Již jsem zde darovala</label>
+                                    <label for="not-first-time"><?=__( 'Již jsem zde darovala', 'dv' ); ?></label>
                                 </div>
                             </div>
                         </div>
@@ -62,47 +62,39 @@ if( !shortcode_exists( 'multistep_form' ) ){
                         <div class="multistep-form__fields">
                             <div class="field">
                                 <div class="input">
-                                    <input type="text" name="name" id="name" placeholder="Jméno*">
+                                    <input type="text" name="name" id="name" placeholder="<?=__( 'Jméno', 'dv' ); ?>*">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input">
-                                    <input type="text" name="surname" id="surname" placeholder="Příjmení*">
+                                    <input type="text" name="surname" id="surname" placeholder="<?=__( 'Příjmení', 'dv' ); ?>*">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input">
-                                    <input type="email" name="email" id="email" placeholder="Email*">
+                                    <input type="email" name="email" id="email" placeholder="<?=__( 'Email', 'dv' ); ?>*">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="input">
-                                    <input type="tel" name="phone" id="phone" placeholder="Telefon*">
+                                    <input type="tel" name="phone" id="phone" placeholder="<?=__( 'Telefon', 'dv' ); ?>*">
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="birthdate">Rok narození<span class="required-mark"></span></label>
+                                <label for="birthdate"><?=__( 'Rok narození', 'dv' ); ?><span class="required-mark"></span></label>
                                 <div class="input">
-                                    <input type="date" name="birthdate" id="birthdate">
+                                    <input type="date" max="2003-01-01" name="birthdate" id="birthdate">
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="communication_method">Preferovaný způsob komunikace<span class="required-mark"></span></label>
+                                <label for="communication_method"><?=__( 'Preferovaný způsob komunikace', 'dv' ); ?><span class="required-mark"></span></label>
                                 <div class="select">
                                     <select name="communication_method" id="communication_method">
-                                        <option value="" disabled selected>Vybrat</option>
-                                        <option value="E-mail">E-mail</option>
-                                        <option value="Telefon">Telefon</option>
-                                        <option value="SMS">SMS</option>
+                                        <option value="" disabled selected><?=__( 'Vybrat', 'dv' ); ?></option>
+                                        <option value="E-mail"><?=__( 'E-mail', 'dv' ); ?></option>
+                                        <option value="Telefon"><?=__( 'Telefon', 'dv' ); ?></option>
+                                        <option value="SMS"><?=__( 'SMS', 'dv' ); ?></option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="acceptance">
-                                    <label>
-                                        <input type="checkbox" name="acceptance">
-                                        Potvrzuji prostudování a souhlas s <a href="<?=get_privacy_policy_url(); ?>" target="_blank">Informací pro dárkyně</a>
-                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -112,82 +104,86 @@ if( !shortcode_exists( 'multistep_form' ) ){
                             <div class="multistep-form__fields-group" data-group="new">
                                 <div class="fields two">
                                     <div class="field">
-                                        <label for="height">Výška (cm)<span class="required-mark"></span></label>
+                                        <label for="height"><?=__( 'Výška (cm)', 'dv' ); ?><span class="required-mark"></span></label>
                                         <div class="input">
                                             <input type="number" min="140" max="200" name="height" id="height">
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <label for="weight">Váha (kg)<span class="required-mark"></span></label>
+                                        <label for="weight"><?=__( 'Váha (kg)', 'dv' ); ?><span class="required-mark"></span></label>
                                         <div class="input">
                                             <input type="number" min="45" max="90" name="weight" id="weight">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Léčila jste se někdy na neplodnost?</label>
+                                    <label><?=__( 'Léčila jste se někdy na neplodnost?', 'dv' ); ?></label>
                                     <div class="toggle">
-                                        <div class="toggle__label">Ne</div>
+                                        <div class="toggle__label"><?=__( 'Ne', 'dv' ); ?></div>
                                         <label>
                                             <input type="checkbox" name="infertility_threatment">
                                             <span class="toggle__slider"></span>
                                         </label>
-                                        <div class="toggle__label">Ano</div>
+                                        <div class="toggle__label"><?=__( 'Ano', 'dv' ); ?></div>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Darovala jste někdy vajíčka?</label>
+                                    <label><?=__( 'Darovala jste někdy vajíčka?', 'dv' ); ?></label>
                                     <div class="toggle">
-                                        <div class="toggle__label">Ne</div>
+                                        <div class="toggle__label"><?=__( 'Ne', 'dv' ); ?></div>
                                         <label>
                                             <input type="checkbox" name="eggs_donated">
                                             <span class="toggle__slider"></span>
                                         </label>
-                                        <div class="toggle__label">Ano</div>
+                                        <div class="toggle__label"><?=__( 'Ano', 'dv' ); ?></div>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Jste přihlášena k veřejnému zdravotnímu pojištění v České republice?</label>
+                                    <label><?=__( 'Jste přihlášena k veřejnému zdravotnímu pojištění v České republice?', 'dv' ); ?></label>
                                     <div class="toggle">
-                                        <div class="toggle__label">Ne</div>
+                                        <div class="toggle__label"><?=__( 'Ne', 'dv' ); ?></div>
                                         <label>
                                             <input type="checkbox" name="insurance_registration">
                                             <span class="toggle__slider"></span>
                                         </label>
-                                        <div class="toggle__label">Ano</div>
+                                        <div class="toggle__label"><?=__( 'Ano', 'dv' ); ?></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="multistep-form__fields-group" data-group="existing">
                                 <div class="field">
-                                    <label for="last-donation">Poslední darování</label>
+                                    <label for="last-donation"><?=__( 'Poslední darování', 'dv' ); ?></label>
                                     <div class="input">
                                         <input type="date" name="last_donation" id="last-donation">
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label for="last-menstruation">Datum poslední menstruace - 1. den<span class="required-mark"></span></label>
+                                    <label for="last-menstruation"><?=__( 'Datum poslední menstruace - 1. den', 'dv' ); ?><span class="required-mark"></span></label>
                                     <div class="input">
                                         <input type="date" name="last_menstruation" id="last-menstruation">
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Hormonální antikoncepce?<span class="required-mark"></span></label>
+                                    <label><?=__( 'Hormonální antikoncepce?', 'dv' ); ?><span class="required-mark"></span></label>
                                     <div class="toggle">
-                                        <div class="toggle__label">Ne</div>
+                                        <div class="toggle__label"><?=__( 'Ne', 'dv' ); ?></div>
                                         <label>
-                                            <input type="checkbox" name="hormonal_anticonception">
+                                            <input type="checkbox" name="hormonal_contraception">
                                             <span class="toggle__slider"></span>
                                         </label>
-                                        <div class="toggle__label">Ano</div>
+                                        <div class="toggle__label"><?=__( 'Ano', 'dv' ); ?></div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="input">
-                                    <textarea name="comment" id="comment" rows="3" placeholder="Poznámka"></textarea>
+                                    <textarea name="comment" id="comment" rows="3" placeholder="<?=__( 'Poznámka', 'dv' ); ?>"></textarea>
                                 </div>
+                            </div>
+
+                            <div class="field">
+                                <?=sprintf( __( 'Potvrzuji prostudování a souhlas s %sInformací pro dárkyně%s', 'dv' ), '<a href="' . get_privacy_policy_url() . '" target="_blank">', '</a>' ); ?>
                             </div>
                         </div>
                     </div>
@@ -195,8 +191,8 @@ if( !shortcode_exists( 'multistep_form' ) ){
                 </form>
                 <div class="multistep-form__response"></div>
                 <div class="multistep-form__nav">
-                    <button class="multistep-form__back-btn button button--link" disabled>Předchozí</button>
-                    <button class="multistep-form__next-btn button button--link">Další</button>
+                    <button class="multistep-form__back-btn button button--link" disabled><?=__( 'Předchozí', 'dv' ); ?></button>
+                    <button class="multistep-form__next-btn button button--link"><?=__( 'Další', 'dv' ); ?></button>
                 </div>
             </div>
         <?php

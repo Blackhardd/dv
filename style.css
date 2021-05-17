@@ -665,27 +665,32 @@ body:not(.home) .page-content {
     transition: background 300ms ease;
 }
 
-.step:hover .step__inner {
-    background: #FFFFFF;
+.step.visible .step__inner {
+    background: #ffffff;
+}
+
+.step__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .step__number {
-    margin-bottom: 1rem;
-    color: var(--dv-primary-color);
+    margin-right: auto;
+    color: #000000;
     font-size: 3em;
-    font-weight: 200;
     line-height: 1;
-    letter-spacing: -4px;
-}
-
-.step__desc {
-    flex-grow: 1;
+    letter-spacing: -2px;
 }
 
 .step__heading {
     margin: 0 0 10px;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 600 !important;
+}
+
+.step__desc {
+    flex-grow: 1;
 }
 
 
@@ -859,7 +864,7 @@ body:not(.home) .page-content {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(255,255,255,.7);
+    background: rgba(255,255,255,.9);
     border-radius: 0 32px;
     opacity: 0;
     transition: all 200ms ease;
@@ -1055,7 +1060,7 @@ body:not(.home) .page-content {
     margin: 0 auto;
     border-radius: 50%;
     stroke-width: 2;
-    stroke: #4bb71b;
+    stroke: var(--dv-primary-color);
     stroke-miterlimit: 10;
     box-shadow: inset 0px 0px 0px #4bb71b;
 }
@@ -1065,7 +1070,7 @@ body:not(.home) .page-content {
     stroke-dashoffset: 166;
     stroke-width: 2;
     stroke-miterlimit: 10;
-    stroke: #4bb71b;
+    stroke: var(--dv-primary-color);
     fill: #ffffff;
 }
 
@@ -1226,9 +1231,9 @@ body:not(.home) .page-content {
     }
     .step {
         padding-right: unset;
-        padding-bottom: 2rem;
+        padding-bottom: 3rem;
         padding-left: 1rem;
-        border-left: 4px solid #FFFFFF88;
+        border-left: 4px solid #FFFFFF;
     }
     .step:last-child {
         padding-bottom: 0;
@@ -1238,10 +1243,10 @@ body:not(.home) .page-content {
         position: absolute;
         display: block;
         left: 0;
-        top: calc(1rem - 2px);
+        top: 30px;
         width: 0.6rem;
         height: 4px;
-        background: #FFFFFF88;
+        background: #FFFFFF;
     }
     .step__inner {
         padding: 0;
@@ -1250,10 +1255,15 @@ body:not(.home) .page-content {
     .step:hover .step__inner {
         background: unset;
     }
+    .step__header {
+        margin-bottom: 1rem;
+    }
+    .step__header img {
+        height: 64px !important;
+    }
     .step__number {
-        font-size: 2em;
-        font-weight: 400;
-        letter-spacing: -2px;
+        font-weight: 600 !important;
+        font-size: 2rem;
     }
 
     .person-contact {

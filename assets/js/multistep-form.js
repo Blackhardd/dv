@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
         let $email = $form.find('[name="email"]');
         let $phone = $form.find('[name="phone"]');
         let $birth_date = $form.find('[name="birthdate"]');
-        let $acceptance = $form.find('[name="acceptance"]');
+        //let $acceptance = $form.find('[name="acceptance"]');
         let $height = $form.find('[name="height"]');
         let $weight = $form.find('[name="weight"]');
         let $infertility = $form.find('[name="infertility_threatment"]');
@@ -136,6 +136,15 @@ jQuery(document).ready(function($){
 
                         is_valid = false;
                     }
+                    else if($(this).is('[type="date"]') && compare_years(new Date($(this).val()), new Date($(this).attr('max')))){
+                        let $wrapper = $(this).parent();
+                        $wrapper.addClass('error');
+                        setTimeout(function(){
+                            $wrapper.removeClass('error');
+                        }, 2000);
+
+                        is_valid = false;
+                    }
                 });
             }
 
@@ -204,7 +213,7 @@ jQuery(document).ready(function($){
         function validate_height(){
             if(active_step == 3 && step_condition == 'new'){
                 if($height.val() < $height.attr('min') || $height.val() > $height.attr('max')){
-                    form_failed('Height 🙅‍♀️', 'Height.');
+                    form_failed('BMI 💁‍♀️', 'Index tělesné hmotnosti, obvykle označovaný zkratkou BMI (z anglického body mass index) je číslo používané jako indikátor podváhy, normální tělesné hmotnosti, nadváhy a obezity. Pro účely dárcovství vajíček preferujeme, aby se hodnota BMI pohybovala v rozmezí 17 – 30. Tento index je důležitý ne z hlediska „krásy“, ale protože je pro nás na prvním místě Vaše zdraví.');
                 }
 
                 return $height.val() >= $height.attr('min') && $height.val() <= $height.attr('max');
@@ -215,7 +224,7 @@ jQuery(document).ready(function($){
         function validate_weight(){
             if(active_step == 3 && step_condition == 'new'){
                 if($weight.val() < $weight.attr('min') || $weight.val() > $weight.attr('max')){
-                    form_failed('Weight 🙅‍♀️', 'Weight.');
+                    form_failed('BMI 💁‍♀️', 'Index tělesné hmotnosti, obvykle označovaný zkratkou BMI (z anglického body mass index) je číslo používané jako indikátor podváhy, normální tělesné hmotnosti, nadváhy a obezity. Pro účely dárcovství vajíček preferujeme, aby se hodnota BMI pohybovala v rozmezí 17 – 30. Tento index je důležitý ne z hlediska „krásy“, ale protože je pro nás na prvním místě Vaše zdraví.');
                 }
 
                 return $weight.val() >= $weight.attr('min') && $weight.val() <= $weight.attr('max');
@@ -262,7 +271,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_acceptance(){
-            if(active_step == 2){
+            if(active_step == 3){
                 if(!$acceptance.is(':checked')){
                     $form_response.html('<div class="message error">Měli byste přijmout informací pro dárkyně.</div>');
                 }
@@ -273,11 +282,15 @@ jQuery(document).ready(function($){
         }
 
         function validate_required(){
-            return validate_email() && validate_phone() && validate_birth_date() && validate_acceptance() && validate_height() && validate_weight() && validate_infertility() && validate_insurance();
+            return validate_email() && validate_phone() && validate_birth_date() && validate_height() && validate_weight() && validate_infertility() && validate_insurance();
         }
 
         function diff_years(dt1, dt2){
             return dt2.getFullYear() - dt1.getFullYear();
+        }
+
+        function compare_years(dt1, dt2){
+            return dt1.getTime() > dt2.getTime();
         }
     }
 });

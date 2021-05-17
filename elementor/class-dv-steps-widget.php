@@ -71,6 +71,17 @@ class DV_Steps extends \Elementor\Widget_Base {
         $repeater = new \Elementor\Repeater();
 
         $repeater->add_control(
+            'image',
+            [
+                'label'         => __( 'Choose image', 'dv' ),
+                'type'          => \Elementor\Controls_Manager::MEDIA,
+                'default'           => [
+                    'url'           => \Elementor\Utils::get_placeholder_image_src(),
+                ]
+            ]
+        );
+
+        $repeater->add_control(
             'step_number',
             [
                 'label'         => __( 'Number', 'dv' ),
@@ -132,11 +143,20 @@ class DV_Steps extends \Elementor\Widget_Base {
             echo "<div class='steps__slider'>";
 
             foreach( $settings['steps'] as $key => $step ) :
+                $image = '';
+
+                if( $step['image'] ){
+                    $image = wp_get_attachment_image( $step['image']['id'] );
+                }
+
                 echo "
                     <div class='step'>
                         <div class='step__inner'>
-                            <div class='step__number'>{$step['step_number']}</div>
-                            <div class='step__content'>
+                            <div class='step__header'>
+                                <div class='step__number'>{$step['step_number']}</div>
+                                {$image}
+                            </div>
+                            <div class='step__body'>
                                 <h3 class='step__heading'>{$step['step_title']}</h3>
                                 <div class='step__desc'>{$step['step_content']}</div>
                             </div>

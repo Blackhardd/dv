@@ -6,45 +6,11 @@
         <serverdata>
           <mappings>
             <mapping deploy="/domains/dv.komfortol.cz/wp-content/themes/dv" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/domains/dv.komfortol.cz/wp-content/plugins/dv-core" local="$PROJECT_DIR$/../../plugins/dv-core" web="/" />
           </mappings>
         </serverdata>
       </paths>
       <paths name="Osvit">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="PDP Localohost">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="Pied-De-Poul">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="PlugAndPlay">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="Premialis">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="adrupt">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
