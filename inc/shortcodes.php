@@ -40,11 +40,53 @@ if( !shortcode_exists( 'multistep_form' ) ){
                 <ul class="multistep-form__pagination">
                     <li class="active" data-step="1">1</li>
                     <li data-step="2">2</li>
-                    <li data-step="3">3</li>
                 </ul>
                 <form>
                     <div class="multistep-form__step active" data-step="1">
                         <div class="multistep-form__fields">
+                            <div class="field">
+                                <div class="input">
+                                    <input type="text" name="name" id="name" placeholder="<?=__( 'Jméno', 'dv' ); ?>*">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="input">
+                                    <input type="text" name="surname" id="surname" placeholder="<?=__( 'Příjmení', 'dv' ); ?>*">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="input">
+                                    <input type="email" name="email" id="email" placeholder="<?=__( 'Email', 'dv' ); ?>*">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="input">
+                                    <input type="tel" name="phone" id="phone" placeholder="<?=__( 'Telefon', 'dv' ); ?>*">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="birthdate"><?=__( 'Rok narození', 'dv' ); ?><span class="required-mark"></span></label>
+                                <div class="input">
+                                    <input type="date" max="2003-01-01" name="birthdate" id="birthdate">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="communication_method"><?=__( 'Preferovaný způsob komunikace', 'dv' ); ?><span class="required-mark"></span></label>
+                                <div class="select">
+                                    <select name="communication_method" id="communication_method">
+                                        <option value="" disabled selected><?=__( 'Vybrat', 'dv' ); ?></option>
+                                        <option value="E-mail"><?=__( 'E-mail', 'dv' ); ?></option>
+                                        <option value="Telefon"><?=__( 'Telefon', 'dv' ); ?></option>
+                                        <option value="SMS"><?=__( 'SMS', 'dv' ); ?></option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="field">
                                 <label><?=__( 'V Prague Fertility Centre:', 'dv' ); ?></label>
                                 <div class="radio">
@@ -58,48 +100,7 @@ if( !shortcode_exists( 'multistep_form' ) ){
                             </div>
                         </div>
                     </div>
-                    <div class="multistep-form__step" data-step="2">
-                        <div class="multistep-form__fields">
-                            <div class="field">
-                                <div class="input">
-                                    <input type="text" name="name" id="name" placeholder="<?=__( 'Jméno', 'dv' ); ?>*">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="input">
-                                    <input type="text" name="surname" id="surname" placeholder="<?=__( 'Příjmení', 'dv' ); ?>*">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="input">
-                                    <input type="email" name="email" id="email" placeholder="<?=__( 'Email', 'dv' ); ?>*">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="input">
-                                    <input type="tel" name="phone" id="phone" placeholder="<?=__( 'Telefon', 'dv' ); ?>*">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="birthdate"><?=__( 'Rok narození', 'dv' ); ?><span class="required-mark"></span></label>
-                                <div class="input">
-                                    <input type="date" max="2003-01-01" name="birthdate" id="birthdate">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="communication_method"><?=__( 'Preferovaný způsob komunikace', 'dv' ); ?><span class="required-mark"></span></label>
-                                <div class="select">
-                                    <select name="communication_method" id="communication_method">
-                                        <option value="" disabled selected><?=__( 'Vybrat', 'dv' ); ?></option>
-                                        <option value="E-mail"><?=__( 'E-mail', 'dv' ); ?></option>
-                                        <option value="Telefon"><?=__( 'Telefon', 'dv' ); ?></option>
-                                        <option value="SMS"><?=__( 'SMS', 'dv' ); ?></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="multistep-form__step multistep-form__step--conditional" data-step="3">
+                    <div class="multistep-form__step multistep-form__step--conditional" data-step="2">
                         <div class="multistep-form__fields">
                             <div class="multistep-form__fields-group" data-group="new">
                                 <div class="fields two">

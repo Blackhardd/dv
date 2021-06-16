@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     if($('.multistep-form').length){
         let active_step = 1
-        let max_step = 3;
+        let max_step = 2;
 
         let step_condition = false;
 
@@ -179,7 +179,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_email(){
-            if(active_step == 2){
+            if(active_step == 1){
                 const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
                 if($email.val() && !re.test(String($email.val()).toLowerCase())){
                     $form_response.html('<div class="message error">Neplatná emailová adresa.</div>');
@@ -195,7 +195,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_phone(){
-            if(active_step == 2){
+            if(active_step == 1){
                 const re = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/i;
                 if($phone.val() && !re.test(String($phone.val()).toLowerCase())){
                     $form_response.html('<div class="message error">Neplatné telefonní číslo.</div>');
@@ -211,7 +211,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_height(){
-            if(active_step == 3 && step_condition == 'new'){
+            if(active_step == 2 && step_condition == 'new'){
                 if($height.val() < $height.attr('min') || $height.val() > $height.attr('max')){
                     form_failed('BMI 💁‍♀️', 'Index tělesné hmotnosti, obvykle označovaný zkratkou BMI (z anglického body mass index) je číslo používané jako indikátor podváhy, normální tělesné hmotnosti, nadváhy a obezity. Pro účely dárcovství vajíček preferujeme, aby se hodnota BMI pohybovala v rozmezí 17 – 30. Tento index je důležitý ne z hlediska „krásy“, ale protože je pro nás na prvním místě Vaše zdraví.');
                 }
@@ -222,7 +222,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_weight(){
-            if(active_step == 3 && step_condition == 'new'){
+            if(active_step == 2 && step_condition == 'new'){
                 if($weight.val() < $weight.attr('min') || $weight.val() > $weight.attr('max')){
                     form_failed('BMI 💁‍♀️', 'Index tělesné hmotnosti, obvykle označovaný zkratkou BMI (z anglického body mass index) je číslo používané jako indikátor podváhy, normální tělesné hmotnosti, nadváhy a obezity. Pro účely dárcovství vajíček preferujeme, aby se hodnota BMI pohybovala v rozmezí 17 – 30. Tento index je důležitý ne z hlediska „krásy“, ale protože je pro nás na prvním místě Vaše zdraví.');
                 }
@@ -233,7 +233,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_infertility(){
-            if(active_step == 3 && step_condition == 'new'){
+            if(active_step == 2 && step_condition == 'new'){
                 if($infertility.is(':checked')){
                     form_failed('Léčila jste se pro neplodnost 🙅‍♀️', 'Pokud byl důvodem léčby Vaší neplodnosti mužský faktor, kontaktujte prosím recepci našeho centra pro bližší informace. Pokud jste se léčila s vlastní neplodností, není možné Vás do dárcovství zařadit.');
                 }
@@ -244,7 +244,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_insurance(){
-            if(active_step == 3 && step_condition == 'new'){
+            if(active_step == 2 && step_condition == 'new'){
                 if(!$insurance.is(':checked')){
                     form_failed('Zdravotní pojištění 🤦‍♀️', 'Nejste přihlášená k veřejnému zdravotnímu pojištění v ČR.')
                 }
@@ -255,7 +255,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_birth_date(){
-            if(active_step == 2){
+            if(active_step == 1){
                 if($birth_date.val()){
                     let birth_date = new Date($birth_date.val());
                     let now = new Date();
@@ -271,7 +271,7 @@ jQuery(document).ready(function($){
         }
 
         function validate_acceptance(){
-            if(active_step == 3){
+            if(active_step == 2){
                 if(!$acceptance.is(':checked')){
                     $form_response.html('<div class="message error">Měli byste přijmout informací pro dárkyně.</div>');
                 }
