@@ -45,5 +45,7 @@
             endif;
             ?>
         </nav>
+
+        <?=do_shortcode( '[social_icons]' ); ?>
     </div>
 </header>

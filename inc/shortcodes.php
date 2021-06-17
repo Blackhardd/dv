@@ -3,22 +3,24 @@
 if( !shortcode_exists( 'social_icons' ) ) {
     add_shortcode( 'social_icons', 'dv_social_icons_sc' );
     function dv_social_icons_sc( $atts ){
-        $atts = shortcode_atts( array(
-            'facebook' => '',
-            'instagram' => ''
-        ), $atts, 'social_icons' );
+        $facebook_link = get_option( 'facebook_link' );
+        $instagram_link = get_option( 'instagram_link' );
 
         $facebook_icon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.48 0H3.52A3.52 3.52 0 000 3.52v16.96A3.52 3.52 0 003.52 24h7.07v-8.48H7.8V11.3h2.8V8.44c0-2.33 1.9-4.22 4.22-4.22h4.27v4.22H14.8v2.86h4.27l-.7 4.22H14.8V24h5.67A3.52 3.52 0 0024 20.48V3.52A3.52 3.52 0 0020.48 0z" /></svg>';
         $instagram_icon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20.484 0H3.516A3.52 3.52 0 000 3.516v16.968A3.52 3.52 0 003.516 24h16.968A3.52 3.52 0 0024 20.484V3.516A3.52 3.52 0 0020.484 0zm-8.437 18.281a6.335 6.335 0 01-6.328-6.328 6.335 6.335 0 016.328-6.328 6.335 6.335 0 016.328 6.328 6.335 6.335 0 01-6.328 6.328zm7.031-11.25a2.112 2.112 0 01-2.11-2.11c0-1.162.947-2.109 2.11-2.109 1.163 0 2.11.947 2.11 2.11 0 1.163-.947 2.11-2.11 2.11z" /><path d="M19.078 4.219a.704.704 0 100 1.407.704.704 0 000-1.407zM12.047 7.031a4.928 4.928 0 00-4.922 4.922 4.928 4.928 0 004.922 4.922 4.928 4.928 0 004.922-4.922 4.928 4.928 0 00-4.922-4.922z" /></svg>';
 
         $html = '<div class="social-icons">';
 
-        $html .= ($atts['facebook']) ? "<a href='{$atts['facebook']}' target='_blank'>{$facebook_icon}</a>" : '';
-        $html .= ($atts['instagram']) ? "<a href='{$atts['instagram']}' target='_blank'>{$instagram_icon}</a>" : '';
+        $html .= ( $facebook_link ) ? "<a href='{$facebook_link}' target='_blank'>{$facebook_icon}</a>" : '';
+        $html .= ( $instagram_link ) ? "<a href='{$instagram_link}' target='_blank'>{$instagram_icon}</a>" : '';
 
         $html .= '</div>';
-
-        return $html;
+        
+        if( $facebook_link || $instagram_link ){
+            return $html;
+        }
+        
+        return '';
     }
 }
 

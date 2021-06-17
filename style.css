@@ -597,6 +597,12 @@ body:not(.home) .page-content {
     box-shadow: none !important;
 }
 
+.hero__form-title {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
 .hero__form {
     flex-shrink: 0;
     width: 100%;
@@ -984,7 +990,7 @@ body:not(.home) .page-content {
 }
 
 .site-header .social-icons {
-    margin-left: auto;
+    margin-left: 2rem;
 }
 
 .social-icons a {
@@ -1156,7 +1162,8 @@ body:not(.home) .page-content {
     }
 
     .site-nav {
-        margin-left: auto;
+        order: 2;
+        margin-left: 2rem;
     }
     .site-nav__toggler {
         display: flex;
@@ -1188,7 +1195,8 @@ body:not(.home) .page-content {
     }
 
     .site-header .social-icons {
-        display: none;
+        order: 1;
+        margin-left: auto;
     }
 
     .site-footer .site-logo {

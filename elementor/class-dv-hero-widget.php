@@ -81,6 +81,15 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+            'shortcode_title',
+            [
+                'label' 		=> __( 'Shortcode Title', 'dv' ),
+                'type' 			=> \Elementor\Controls_Manager::TEXT,
+                'placeholder' 	=> __( 'Enter title', 'dv' ),
+            ]
+        );
+
         $this->add_control(
             'shortcode',
             [
@@ -119,7 +128,10 @@ class DV_Hero_Widget extends \Elementor\Widget_Base {
 		echo "</div>";
 
 		if( $settings['shortcode'] ){
-		    echo do_shortcode( "<div class='hero__form'>{$settings['shortcode']}</div>" );
+			echo "<div class='hero__form'>";
+			echo ( $settings['shortcode_title'] ) ? "<div class='hero__form-title'>{$settings['shortcode_title']}</div>" : '';
+		    echo do_shortcode( $settings['shortcode'] );
+			echo "</div>";
         }
 
 		echo "
