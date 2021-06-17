@@ -883,10 +883,21 @@ body:not(.home) .page-content {
     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
+.multistep-form__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.multistep-form__title {
+    font-weight: bold;
+}
+
 .multistep-form__pagination {
     list-style: none;
     display: flex;
-    margin: 0 0 1.5em;
+    margin: 0;
     padding: 0;
     color: #c1c1c1;
 }

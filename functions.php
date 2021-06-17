@@ -1,7 +1,7 @@
 <?php
 
 if( !defined( 'DV_THEME_VERSION' ) ){
-	define( 'DV_THEME_VERSION', '1.0.2' );
+	define( 'DV_THEME_VERSION', '1.0.21' );
 }
 
 

@@ -26,8 +26,13 @@ if( !shortcode_exists( 'social_icons' ) ) {
 
 if( !shortcode_exists( 'multistep_form' ) ){
     add_shortcode( 'multistep_form', 'dv_multistep_form_sc' );
-    function dv_multistep_form_sc(){
+    function dv_multistep_form_sc( $atts ){
         wp_enqueue_script( 'dv-multistep-form' );
+
+        $atts = shortcode_atts( array(
+            'title' => ''
+        ), $atts, 'multistep_form' );
+
         ob_start(); ?>
             <div class="multistep-form">
                 <div class="multistep-form__success">
@@ -39,10 +44,14 @@ if( !shortcode_exists( 'multistep_form' ) ){
                         <div class="message__body"></div>
                     </div>
                 </div>
-                <ul class="multistep-form__pagination">
-                    <li class="active" data-step="1">1</li>
-                    <li data-step="2">2</li>
-                </ul>
+                <div class="multistep-form__header">
+                    <div class="multistep-form__title"><?=$atts['title']; ?></div>
+
+                    <ul class="multistep-form__pagination">
+                        <li class="active" data-step="1">1</li>
+                        <li data-step="2">2</li>
+                    </ul>
+                </div>
                 <form>
                     <div class="multistep-form__step active" data-step="1">
                         <div class="multistep-form__fields">
