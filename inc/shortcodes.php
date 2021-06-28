@@ -155,7 +155,7 @@ if( !shortcode_exists( 'multistep_form' ) ){
                                     <div class="toggle">
                                         <div class="toggle__label"><?=__( 'Ne', 'dv' ); ?></div>
                                         <label>
-                                            <input type="checkbox" name="insurance_registration">
+                                            <input type="checkbox" name="insurance_registration" checked="checked">
                                             <span class="toggle__slider"></span>
                                         </label>
                                         <div class="toggle__label"><?=__( 'Ano', 'dv' ); ?></div>
